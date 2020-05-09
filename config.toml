@@ -1,0 +1,63 @@
+baseURL = "https://dev-greg.sharpe.wales/"
+title = "Greg Sharpe"
+
+theme = "hugo-coder"
+
+languageCode = "en-gb"
+
+[params]
+    author = "Greg Sharpe"
+    description = "Greg Sharpe Personal Website"
+    keywords = "blog,devops,engineer"
+    info = "Platform engineer, with a touch of DevOps"
+
+[[params.social]]
+    name = "Github"
+    icon = "fab fa-github"
+    weight = 1
+    url = "https://github.com/GregSharpe1/"
+[[params.social]]
+    name = "Twitter"
+    icon = "fab fa-twitter"
+    weight = 2
+    url = "https://twitter.com/greg_sharpe/"
+[[params.social]]
+    name = "LinkedIn"
+    icon = "fab fa-linkedin"
+    weight = 3
+    url = "https://linkedin.com/in/gregsharpe1"
+[[params.social]]
+    name = "Email"
+    icon = "fa fa-envelope"
+    weight = 4
+    url = "mailto:website+me@gregsharpe.co.uk"
+
+[languages]
+    [languages.en]
+        languagename = "English"
+        baseUrl = "https://dev-greg.sharpe.wales"
+
+            [[languages.en.menu.main]]
+            name = "About"
+            weight = 1
+            url = "about/"
+
+            [[languages.en.menu.main]]
+            name = "Contact me"
+            weight = 2
+            url = "contact/"
+
+    [languages.cy]
+        languagename = "Welsh"
+        baseUrl = "https://dev-greg.sharpe.cymru"
+        
+            
+            [[languages.cy.menu.main]]
+            name = "Am"
+            weight = 1
+            url = "/about"
+
+            [[languages.cy.menu.main]]
+            name = "Cysylltwch â Mi"
+            weight = 2
+            url = "/contact"
