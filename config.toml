@@ -1,0 +1,32 @@
+baseURL = "https://greg.sharpe.wales"
+languageCode = "en-us"
+title = "greg.sharpe.wales/blog"
+theme = "cactus"
+
+[params]
+rss = true
+description = "Hello, I'm Greg. I'd like to share my learnings with anyone who happens to stumble upon them. I'll mostly be writing about things I either find interesting or problems I solve that others may find useful. I'm an Infrastructure Engineer, working and playing with huge scale for a living. I work alot with Amazon Web Services, Terraform and Kubernetes. If you'd like to talk more, email, tweet or reply to one of the posts."
+colortheme = "dark"
+
+[[params.social]]
+name = "github"
+link = "https://github.com/GregSharpe1"
+
+[[params.social]]
+name = "twitter"
+link = "https://twitter.com/Greg_Sharpe"
+
+[[params.social]]
+name = "email"
+link = "blog+me@gregsharpe.co.uk"
+
+[[menu.main]]
+name = "home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "posts"
+url = "/posts"
+weight = 2
+
