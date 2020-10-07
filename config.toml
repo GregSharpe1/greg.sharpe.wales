@@ -1,63 +1,32 @@
-baseURL = "https://dev-greg.sharpe.wales/"
-title = "Greg Sharpe"
-
-theme = "hugo-coder"
-
-languageCode = "en-gb"
+baseURL = "https://greg.sharpe.wales"
+languageCode = "en-us"
+title = "greg.sharpe.wales/blog"
+theme = "cactus"
 
 [params]
-    author = "Greg Sharpe"
-    description = "Greg Sharpe Personal Website"
-    keywords = "blog,devops,engineer"
-    info = "Platform engineer, with a touch of DevOps"
+rss = true
+description = "Hello, I'm Greg. I'd like to share my learnings with anyone who happens to stumble upon them. I'll mostly be writing about things I either find interesting or problems I solve that others may find useful. I'm an Infrastructure Engineer, working and playing with huge scale for a living. I work alot with Amazon Web Services, Terraform and Kubernetes. If you'd like to talk more, email, tweet or reply to one of the posts."
+colortheme = "dark"
 
 [[params.social]]
-    name = "Github"
-    icon = "fab fa-github"
-    weight = 1
-    url = "https://github.com/GregSharpe1/"
+name = "github"
+link = "https://github.com/GregSharpe1"
+
 [[params.social]]
-    name = "Twitter"
-    icon = "fab fa-twitter"
-    weight = 2
-    url = "https://twitter.com/greg_sharpe/"
+name = "twitter"
+link = "https://twitter.com/Greg_Sharpe"
+
 [[params.social]]
-    name = "LinkedIn"
-    icon = "fab fa-linkedin"
-    weight = 3
-    url = "https://linkedin.com/in/gregsharpe1"
-[[params.social]]
-    name = "Email"
-    icon = "fa fa-envelope"
-    weight = 4
-    url = "mailto:website+me@gregsharpe.co.uk"
+name = "email"
+link = "blog+me@gregsharpe.co.uk"
 
-[languages]
-    [languages.en]
-        languagename = "English"
-        baseUrl = "https://dev-greg.sharpe.wales"
+[[menu.main]]
+name = "home"
+url = "/"
+weight = 1
 
-            [[languages.en.menu.main]]
-            name = "About"
-            weight = 1
-            url = "about/"
+[[menu.main]]
+name = "posts"
+url = "/posts"
+weight = 2
 
-            [[languages.en.menu.main]]
-            name = "Contact me"
-            weight = 2
-            url = "contact/"
-
-    [languages.cy]
-        languagename = "Welsh"
-        baseUrl = "https://dev-greg.sharpe.cymru"
-        
-            
-            [[languages.cy.menu.main]]
-            name = "Am"
-            weight = 1
-            url = "/about"
-
-            [[languages.cy.menu.main]]
-            name = "Cysylltwch â Mi"
-            weight = 2
-            url = "/contact"
