@@ -4,7 +4,7 @@ date: 2020-10-08T20:54:27+01:00
 draft: false
 ---
 
-some handy, commonly used aws commands I use :)
+some handy, `awscli` commands I use :)
 
 ```
 #!/bin/bash
