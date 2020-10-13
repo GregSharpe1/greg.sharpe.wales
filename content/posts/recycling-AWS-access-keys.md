@@ -1,5 +1,6 @@
 ---
 title: "Recycling AWS Access Keys"
+tags: ['AWS', 'Automation', 'Scripting', 'Tutorial']
 date: 2020-10-07T21:42:05+01:00
 draft: false
 ---

@@ -1,5 +1,6 @@
 ---
 title: "AWS Aliases"
+tags: ['AWS', 'Linux', 'Tech']
 date: 2020-10-08T20:54:27+01:00
 draft: false
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Hugo Terraform S3 Cdn"
+tags: ['AWS', 'Terraform', 'Tech', 'Infrastructure', 'Tutorial']
 date: 2020-10-07T22:59:26+01:00
 draft: false
 ---
