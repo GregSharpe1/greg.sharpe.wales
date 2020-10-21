@@ -1,9 +1,10 @@
 name: 'greg.sharpe.wales release'
 
-on: 'push'
-  # push:
-  #   branches:
-  #     - main
+on:
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
   deploy:
