@@ -2,7 +2,7 @@
 title: "Terraform, Kuberentes and External DNS"
 tags: ['AWS', 'Terraform', 'Kubernetes', 'External-DNS', 'Help', 'Tech', 'Infrastructure', 'Tutorial']
 date: 2020-10-29T11:25:00Z
-draft: true
+draft: false
 ---
 
 # Introduction
