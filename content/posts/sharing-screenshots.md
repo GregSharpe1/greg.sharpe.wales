@@ -74,7 +74,7 @@ module screenshot {
 
 ### (Optional) Route53
 
-If using Amazon Web Services' Route53 service, then the following Terraform should allow your to create the required CNAME to point at the cloudfront distrobution.
+If using Amazon Web Services' Route53 service, then the following Terraform should allow your to create the required CNAME to point at the cloudfront distribution.
 
 ```
 resource aws_route53_record screenshot_cname {
