@@ -5,7 +5,7 @@ date: 2020-10-07T21:42:05+01:00
 draft: false
 ---
 
-if you're ever in need of an automated way of recycling your AWS access keys, here's a script:
+If you're ever in need of an automated way of recycling your AWS access keys, here's a script:
 ```
 #!/bin/bash
 # Example usage:
