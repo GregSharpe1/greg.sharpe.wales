@@ -28,14 +28,15 @@ resource aws_route53_zone hosted_zone {
 
   // Route53 records are now controlled via External-DNS, to enable the deletion of the environment we require the Route53 hosted-zone to be clear before destorying. Here's a little hacky way of doing so.
   provisioner local-exec {
-    when    = destroy
-    command = <<EOT
+    when        = destroy
+    interpreter = ["/bin/bash", "-c"]
+    command     = <<EOT
     aws route53 list-resource-record-sets \
       --hosted-zone-id "${self.zone_id}" |
     jq -c '.ResourceRecordSets[]' |
     while read -r resourcerecordset; do
-      read -r name type <<<$(echo $(jq -r '.Name,.Type' <<<"$resourcerecordset"))
-      if [ $type != "NS" -a $type != "SOA" ]; then
+      read -r type <<<"$(jq -r '.Type' <<<"$resourcerecordset")"
+      if [ "$type" != "NS" ] && [ "$type" != "SOA" ]; then
         aws route53 change-resource-record-sets \
           --hosted-zone-id "${self.zone_id}" \
           --change-batch '{"Changes":[{"Action":"DELETE","ResourceRecordSet":
