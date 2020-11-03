@@ -13,7 +13,7 @@ Something I'm quite proud of, is my screenshotting tool. Everytime I take a scre
 
 ## Why?
 
-* Sharing images is easier. No need to upload, then download the image, find it within local machine (looking at you slack).
+* Sharing images is easier. No need to upload, then download the image, find it within local machine.
 * Screenshots across multiple machines.
 
 ## Infrastructure required
@@ -95,8 +95,73 @@ output cf_domain_name {
 
 to your `main.tf` file and add follow up with your domain manager to add screenshot.yourdomain.tld to the output (CNAME'd)
 
+### (Recommended) Create an AWS User
+
+Creating a profile within on your machine that is only able to upload files to that given bucket is something I'd higly recommend. Here's how:
+
+```
+resource aws_iam_policy screenshot {
+  name        = "screenshot-uploader"
+  description = "screenshot.gregsharpe.co.uk application user permissions"
+
+  policy = data.aws_iam_policy_document.screenshot.json
+}
+
+data aws_iam_policy_document screenshot {
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:PutObject",
+      "s3:GetObject"
+    ]
+    resources = [
+      module.screenshot.s3_bucket_arn,
+      "${module.screenshot.s3_bucket_arn}/*"
+    ]
+  }
+}
+
+resource aws_iam_user screenshot {
+  name = "screenshot-uploader"
+}
+
+resource aws_iam_user_policy_attachment screenshot {
+  user       = aws_iam_user.screenshot.name
+  policy_arn = aws_iam_policy.screenshot.arn
+}
+```
+
+After this IAM User and policy is created within Terraform create the aws profile locally adding the [users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) access key and secret access key. Making sure to match the profile name with the profile name used within the script below.
+
+## (Optional) Linux setup
+
+Without going into too much detail, on my Linux machine a script is run everytime I take a screenshot which looks like this:
+
+```
+#!/bin/bash
+
+AWS_profile=screenshot-uploader
+BUCKET_NAME=screenshot-prod-s3-origin
+
+# Find the latest file in the screenshots directory
+latest_screenshot=$(ls -Art /home/greg/pictures/screenshots | tail -n 1)
+backup_file_name=/home/greg/pictures/screenshots/${latest_screenshot}
+
+echo 'Sending screen to S3'
+# Send the file to the S3 bucket
+aws --profile "${AWS_profile}" s3 cp "${backup_file_name}" s3://"${BUCKET_NAME}"/
+
+# Pipe the new link in clipboard
+echo 'https://screenshot.gregsharpe.co.uk/'${latest_screenshot} | xclip -selection "clipboard" -i
+
+# Send the notification to the dunst notifier
+notify-send $(echo 'https://screenshot.gregsharpe.co.uk/'${latest_screenshot})
+```
+
+The above script, grabs the latest screenshot within my given screenshots directory and using the [awscli](https://aws.amazon.com/cli/) copies a the file to the S3 bucket and places the link to that object in my pastebin.
+
 ### Further documentation
 
-* All of the Terraform used above is hosted [here](https://github.com/gregsharpe-infra/screenshot. .i)
+* All of the Terraform used above is hosted [here](https://github.com/gregsharpe-infra/screenshot)
 * The cloudposse Terraform [module](https://github.com/cloudposse/terraform-aws-cloudfront-s3-cdn).
 
