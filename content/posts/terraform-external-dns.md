@@ -7,7 +7,7 @@ draft: false
 
 # Introduction
 
-if you're like me, and have your Kubernetes/EKS cluster being built in AWS with Terraform and use Route53 you're probably running [external-dns](https://github.com/kubernetes-sigs/external-dns) (if you're not, I highly recommend it, if only for it's ease of use).
+If you're like me, and have your Kubernetes/EKS cluster being built in AWS with Terraform and use Route53 you're probably running [external-dns](https://github.com/kubernetes-sigs/external-dns) (if you're not, I highly recommend it, if only for it's ease of use).
 
 ## Problems
 
