@@ -1,33 +1,42 @@
-name: 'greg.sharpe.wales release'
+name: "greg.sharpe.wales release"
 
 on:
   push:
     branches:
       - main
       - master
+  pull_request:
+    branches:
+      - main
+      - master
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-24.04
     steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v2
+      - name: "Checkout"
+        uses: actions/checkout@v4
         with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          submodules: true # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
 
-      - name: 'Setup Hugo'
-        uses: peaceiris/actions-hugo@v2
+      - name: "Setup Hugo"
+        uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.75.1'
+          hugo-version: "0.75.1"
 
-      - name: 'Build Hugo'
+      - name: "Build Hugo"
         id: build
         run: hugo --minify
 
-      - name: 'Deploy to production bucket'
-        uses: chrislennon/action-aws-cli@v1.1
-      - run: aws s3 cp ./public s3://gregsharpewales-prod-s3-origin/ --recursive
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: "Configure AWS credentials"
+        if: github.event_name == 'push'
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+
+      - name: "Deploy to production bucket"
+        if: github.event_name == 'push'
+        run: aws s3 cp ./public s3://gregsharpewales-prod-s3-origin/ --recursive
